@@ -1,0 +1,1 @@
+{"_id":{"$oid":"6814bdc00f4fcf7c86eea710"},"id":"6814bda60f4fcf7c86eea700","date":{"$date":"2025-05-02T00:00:00Z"},"amount":{"$numberDecimal":"1000"},"desc":"food","category":"General","createdAt":{"$date":"2025-05-02T12:42:40.794Z"},"updatedAt":{"$date":"2025-05-02T12:42:40.794Z"},"__v":0}
