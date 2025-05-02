@@ -1,0 +1,28 @@
+# Ignore development files
+.git
+.github
+.gitignore
+.dockerignore
+README.md
+LICENSE
+
+# Ignore local environment files
+.env
+.env.*
+config.env
+config.env.example
+
+# Ignore node modules (will be installed during build)
+node_modules
+client/node_modules
+
+# Ignore client build (will be built during deployment)
+client/build
+
+# Ignore Docker related files (except Dockerfile which is needed)
+docker-compose.yml
+docker-compose.*.yml
+
+# Ignore test files
+**/*.test.js
+**/*.spec.js

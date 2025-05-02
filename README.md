@@ -137,3 +137,40 @@ To run this project, you will need to add the following environment variables to
 `PORT` : Port on which the server will run (default: 5000)
 
 `NODE_ENV` : Set to 'production' for production environment
+
+`GEMINI_API_KEY` : API key for Google's Gemini AI (if using AI features)
+
+## Deployment with Railway (CI/CD)
+
+This project is configured for continuous deployment with Railway.app. When you push changes to your GitHub repository, Railway automatically deploys the updated application.
+
+### Setting Up Railway Deployment
+
+1. Fork or push this repository to your GitHub account
+2. Create an account on [Railway.app](https://railway.app/)
+3. Create a new project in Railway and select "Deploy from GitHub repo"
+4. Connect your GitHub account and select this repository
+5. Configure the following environment variables in Railway:
+   - `DATABASE`: Your MongoDB Atlas connection string
+   - `SECRET_KEY`: A secure random string for JWT authentication
+   - `PORT`: Set to 8080 for Railway deployment
+   - `NODE_ENV`: Set to 'production'
+   - `GEMINI_API_KEY`: Your Google Gemini API key (if using AI features)
+6. Deploy the application
+
+### CI/CD Pipeline
+
+The CI/CD pipeline works as follows:
+1. Push changes to the main branch of your GitHub repository
+2. GitHub Actions runs the CI workflow to test your code
+3. Railway detects the new commit and waits for CI to pass
+4. Railway builds and deploys your application automatically
+5. Your changes are live within minutes of pushing to GitHub
+
+### Monitoring Deployments
+
+You can monitor your deployments in the Railway dashboard. Each deployment will show:
+- Build logs
+- Deployment status
+- Environment variables
+- Resource usage

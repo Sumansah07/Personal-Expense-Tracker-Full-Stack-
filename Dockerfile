@@ -34,16 +34,18 @@ RUN npm run build
 WORKDIR /app
 
 # Expose the port the app runs on
-EXPOSE 5000
+# Railway will use the PORT environment variable
+EXPOSE ${PORT:-5000}
 
 # Create a non-root user and switch to it
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 RUN chown -R appuser:appgroup /app
 USER appuser
 
-# Health check
+# Health check - use PORT environment variable with fallback to 5000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
-  CMD node -e "const http = require('http'); const options = { hostname: 'localhost', port: 5000, path: '/', method: 'GET' }; const req = http.request(options, (res) => { if (res.statusCode === 200 || res.statusCode === 401) { process.exit(0); } else { process.exit(1); } }); req.on('error', () => process.exit(1)); req.end();"
+  CMD node -e "const http = require('http'); const port = process.env.PORT || 5000; const options = { hostname: 'localhost', port: port, path: '/', method: 'GET' }; const req = http.request(options, (res) => { if (res.statusCode === 200 || res.statusCode === 401) { process.exit(0); } else { process.exit(1); } }); req.on('error', () => process.exit(1)); req.end();"
 
 # Command to run the application
-CMD ["node", "app.js"]
+# Use shell form to ensure environment variables are properly expanded
+CMD node app.js
